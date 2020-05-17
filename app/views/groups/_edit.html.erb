@@ -1,0 +1,31 @@
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content" data-controller="group">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <%= form_for(@group, url: groups_path, method: "post", remote: true ) do |g| %>
+      <div class="modal-body">
+        <div class="form-group">
+          <%= g.label :name, "群組名稱" %>
+          <%= g.text_field :name, class: "form-control" %>
+        </div>  
+        <div class="form-group">
+          <%= g.label :description, "群組描述"%>
+          <%= g.text_field :description, class: "form-control" %>
+        </div>        
+      </div>
+    <div class="modal-footer">
+      <% if @group.errors.any? %>
+        <% @group.errors.full_message.each do |msg| %>
+          <span><%= msg %></span>
+        <% end %>
+      <% end %>
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <%= g.submit  class: 'btn btn-primary'%>
+    </div>
+    <% end %>
+  </div>
+</div>

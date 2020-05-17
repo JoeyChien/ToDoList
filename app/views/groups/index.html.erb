@@ -1,0 +1,46 @@
+<div class="col-12 col-md-12 mt-2" data-controller="group">
+  <%= button_tag "Create", class: "btn btn-primary", 
+                            data: {toggle: "modal", 
+                                   target: "createModal",
+                                   action: "group#openModal"} %>
+   
+  <div class="modal " id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-target="group.modal">    
+  <%= render 'new' %>
+  </div>
+  <div class="modal " id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-target="group.modal">    
+    <%= render 'edit' %>
+    </div>
+</div>
+
+<div class="col-12 col-md-12 mt-2">
+  <table class="table table-dark">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>群組名稱</th>
+        <th>群組描述</th>
+        <th>編輯</th>
+        <th>刪除</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @groups.each do |g| %>
+        <tr data-controller="group">
+          <td>#<%= g.id %><input type="hidden" data-target="group.group_id" value="<%= g.id %>"></td>
+          <td><%= g.name %></td>
+          <td><%= g.description %></td>
+          <td><%= button_tag "Edit", class: "btn btn-primary", 
+                                     data: {toggle: "modal", 
+                                     target: "editModal",
+                                     action: "group#openModal"} %></td>
+          <td>#</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+
